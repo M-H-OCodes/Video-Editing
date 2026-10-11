@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="Css/video.css">
+    <link rel="stylesheet" href="Css/style3.css">
+
+    <style>
+        html, body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(60deg, black, rgb(43, 0, 43));
+        }
+
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        header {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 100;
+            width: auto;
+        }
+
+        nav {
+            margin-right: 80px;
+        }
+
+
+        @media (max-width: 992px) {
+            header {
+                right: 0;
+                transform: none;
+                width: auto;
+            }
+
+            nav {
+                width: auto;
+                height: 55px;
+                font-size: 19px;
+                margin-right: 40px;
+            }
+
+            nav a {
+                padding: 20px;
+            }
+
+            nav span {
+                width: 90px;
+                height: 100%;
+            }
+        }
+
+
+        @media (max-width: 768px) {
+            header {
+                right: 0;
+                width: auto;
+            }
+
+            nav {
+                margin-right: 20px;
+                width: auto;
+            }
+
+            nav a {
+                padding: 15px;
+                font-size: 16px;
+            }
+        }
+
+
+
+        .hero-section {
+            position: relative;
+            width: 99vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .magic {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 99vw;
+            height: 100vh;
+            object-fit: cover;
+            opacity: 0.7;
+            z-index: -1;
+        }
+
+        .yes {
+            position: relative;
+            z-index: 2;
+            font-size: 6vw;
+            color: transparent;
+            text-align: center;
+            background-image: linear-gradient(-270deg, rgb(76, 1, 76), rgb(151, 1, 151));
+            -webkit-background-clip: text;
+            max-width: 80%;
+            font-weight: bold;
+        }
+
+
+
+        @media (max-width: 992px) {
+            .yes {
+                font-size: 5vw;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .yes {
+                font-size: 7vw;
+            }
+        }
+
+        .page-content {
+            position: relative;
+            z-index: 1;
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+
+        .content-section {
+            width: 97vw;
+            padding: 3rem 0;
+            margin: 0;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: calc(16px + 0.7vw);
+            position: relative;
+            left: 0;
+            right: 0;
+            margin-top: 5px;
+            margin-left: 10px;
+        }
+
+        .houston-section {
+            background-color: rgb(154, 2, 154);
+            color: rgb(37, 0, 37);
+        }
+
+        .wojak-section {
+            background-color: rgb(116, 2, 116);
+            color: rgb(42, 1, 42);
+        }
+
+        .anime-section {
+            background-color: rgb(74, 0, 74);
+            color: rgb(116, 2, 116);
+            padding-bottom: 4rem;
+        }
+
+        .samples-section {
+            background-color: rgb(53, 0, 53);
+            color: rgb(154, 2, 154);
+            padding-bottom: 4rem;
+        }
+
+        .content-section h1 {
+            padding-left: 2rem;
+            margin-top: 0;
+            font-size: 2.5rem;
+        }
+
+
+        .video-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 2rem;
+        }
+
+        .video-item-flex {
+            flex: 1;
+            max-width: 33%;
+        }
+
+        .video-item-flex video {
+            width: 100%;
+            border-radius: 5px;
+            height: auto;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            margin: 0 auto 2rem auto;
+            overflow: hidden;
+            padding: 0 1rem;
+        }
+
+        .carousel {
+            display: flex;
+            width: 100%;
+        }
+
+
+        .video-item {
+            min-width: 50%;
+            padding: 10px 15px;
+            box-sizing: border-box;
+            margin-right: 0;
+            transition: all 0.4s ease;
+        }
+
+        .video-item {
+            display: none;
+        }
+
+        .video-item.active {
+            display: block;
+        }
+
+        .video-item video {
+            width: 100%;
+            border-radius: 5px;
+            height: auto;
+        }
+
+        .carousel-container1 {
+            position: relative;
+            width: 100%;
+            margin: 0 auto 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .carousel1 {
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
+            grid-template-rows: auto auto; 
+            gap: 15px;
+        }
+
+
+        .video-item1 {
+            padding: 10px;
+            width: 100%;
+        }
+
+        .video-item1 video {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        .carousel-container2 {
+            position: relative;
+            width: 100%;
+            margin: 0 auto 2rem auto;
+            overflow: hidden;
+            padding: 0 1rem;
+        }
+
+        .carousel2 {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+        }
+
+
+        .video-item2 {
+            min-width: 33%; 
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        .video-item2 video {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 9/16; 
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .carousel-container3 {
+            position: relative;
+            width: 100%;
+            margin: 3rem auto 2rem auto;
+            overflow: hidden;
+            padding: 0 1rem;
+        }
+
+        .carousel3 {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+        }
+
+
+        .video-item3 {
+            min-width: 48%; 
+            padding: 10px;
+            margin-right: 20px;
+        }
+
+        .video-item3 video {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16/9; 
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+
+        button.prev, button.next, 
+        button.prev1, button.next1,
+        button.prev2, button.next2 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        button.prev, button.prev1, button.prev2 {
+            left: 20px;
+        }
+
+        button.next, button.next1, button.next2 {
+            right: 20px;
+        }
+
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 1450px;
+            margin: 80px auto 100px auto;
+            padding: 20px 0;
+            position: relative;
+            z-index: 5;
+        }
+
+
+        .backward {
+            background: linear-gradient(15deg, black, purple);
+            border-radius: 40px;
+            width: 190px;
+            font-size: 20px;
+            height: 50px;
+            color: purple;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 5;
+        }
+
+        .forward {
+            background: linear-gradient(15deg, black, purple);
+            border-radius: 40px;
+            width: 190px;
+            font-size: 20px;
+            height: 50px;
+            color: purple;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 5;
+        }
+
+        .backward:hover, .forward:hover {
+            transform: translateY(-3px);
+            transition: 0.5s ease;
+            color: rgb(158, 4, 158);
+            text-decoration: underline;
+            font-weight: 500;
+            box-shadow: 11px 1px 20px rgb(234, 3, 234);
+        }
+
+
+        footer {
+            width: 100vw;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            background: rgb(120, 1, 153);
+            margin-top: 100px;
+        }
+
+
+        @media (max-width: 768px) {
+            .video-item-flex {
+                max-width: 100%;
+                flex: 1 1 100%;
+                margin-right: 10px;
+            }
+
+            .video-container {
+                flex-direction: column;
+                align-items: center;
+                padding: 0 1rem;
+            }
+
+            .video-item, .video-item2, .video-item3 {
+                min-width: 100%;
+                margin-right: 0;
+            }
+
+            .video-item2{
+                margin-right: 0;
+                margin-left: 0;
+            }
+
+            .carousel1 {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(4, auto);
+            }
+
+            .forward, .backward {
+                width: 150px;
+                font-size: 16px;
+                height: 45px;
+            }
+
+
+            .nav-container {
+                margin: 50px auto 60px auto;
+            }
+
+            .nav-button {
+                display: none;
+            }
+
+            .nav-button.forward {
+                display: none;
+            }
+
+            .content-section h1 {
+                font-size: 2rem;
+                padding-left: 1rem;
+            }
+
+            button.prev, button.prev1, button.prev2 {
+                left: 10px;
+            }
+
+            button.next, button.next1, button.next2 {
+                right: 10px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a id="home-link" href="home.html">Home</a>
+            <a id="portfolio-link" href="Portfolio1.html">Portfolio</a>
+            <a id="about-link" href="course.html">Courses</a>
+            <a id="contact-link" href="about us.html">About us</a>
+            <span></span>
+            <script src="nav.js"></script>
+        </nav>
+    </header>
+
+    <div class="hero-section">
+        <img src="Images/magic.jpg" alt="" class="magic">
+        <h1 class="yes">The MAGIC Lies Here!</h1>
+    </div>
+
+    <div class="page-content">
+        <section class="content-section houston-section animate-on-scroll">
+            <h1>Houston Kold Style Shorts:</h1>
+            <div class="video-container">
+                <div class="video-item-flex">
+                    <video controls src="videos/sample houston 1.1..mp4"></video>
+                </div>
+                <div class="video-item-flex">
+                    <video controls poster="Images/Untitled design.png" src="videos/Houston style edit 2.mp4"></video>
+                </div>
+                <div class="video-item-flex">
+                    <video controls src="videos/Outclass.mp4"></video>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section wojak-section animate-on-scroll">
+            <h1>Wojak style animation:</h1>
+            <div class="carousel-container animate-on-scroll">
+                <div class="carousel animate-on-scroll">
+                    <div class="video-item">
+                        <video src="videos/Wojak..mp4" controls class="vidv"></video>
+                    </div>
+                    <div class="video-item">
+                        <video src="videos/Pro 2.2.mp4" controls class="vidv"></video>
+                    </div>
+                    <div class="video-item">
+                        <video src="videos/kia vid actual final.mp4" controls class="vidv"></video>
+                    </div>
+                </div>
+                <button class="prev animate-on-scroll" onclick="moveCarousel(-1)">&#10094;</button>
+                <button class="next animate-on-scroll" onclick="moveCarousel(1)">&#10095;</button>
+            </div>
+        </section>
+
+        <section class="content-section anime-section animate-on-scroll">
+            <h1>Anime based Videos:</h1>
+            <div class="carousel-container1 animate-on-scroll">
+                <div class="carousel1 animate-on-scroll">
+                    <div class="video-item1">
+                        <video src="videos/anime1.mp4" class="vidv1" controls></video>
+                    </div>
+                    <div class="video-item1">
+                        <video src="videos/Anime 2.mp4" class="vidv1" controls></video>
+                    </div>
+                    <div class="video-item1">
+                        <video src="videos/Anime 3.mp4" class="vidv1" controls></video>
+                    </div>
+                    <div class="video-item1">
+                        <video src="videos/anime4.mp4" class="vidv1" controls></video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section samples-section animate-on-scroll">
+            <h1>Samples:</h1>
+            <div class="carousel-container2 animate-on-scroll">
+                <div class="carousel2 animate-on-scroll">
+                    <div class="video-item2">
+                        <video src="videos/Sample.mp4" class="vidv2" controls></video>
+                    </div>
+                    <div class="video-item2">
+                        <video src="videos/Sample2.1.mp4" class="vidv2" controls></video>
+                    </div>
+                    <div class="video-item2">
+                        <video src="videos/Sample3.mp4" class="vidv2" controls></video>
+                    </div>
+                    <div class="video-item2">
+                        <video src="videos/Sample4.mp4" class="vidv2" controls></video>
+                    </div>
+                    <div class="video-item2">
+                        <video src="videos/Sample5.mp4" class="vidv2" controls></video>
+                    </div>
+                </div>
+                <button class="prev1" onclick="moveCarousel2(-1)">&#10094;</button>
+                <button class="next1" onclick="moveCarousel2(1)">&#10095;</button>
+            </div>
+
+            <div class="carousel-container3 animate-on-scroll">
+                <div class="carousel3 animate-on-scroll">
+                    <div class="video-item3">
+                        <video src="videos/kaiju no.8..mp4" class="vidv3" controls></video>
+                    </div>
+                    <div class="video-item3">
+                        <video src="videos/Sample edit.mp4" class="vidv3" controls></video>
+                    </div>
+                    <div class="video-item3">
+                        <video src="videos/Sample6.mp4" class="vidv3" controls></video>
+                    </div>
+                    <div class="video-item3">
+                        <video src="videos/sample7.mp4" class="vidv3" controls></video>
+                    </div>
+                    <div class="video-item3">
+                        <video src="videos/Sample8.mp4" class="vidv3" controls></video>
+                    </div>
+                </div>
+                <button class="prev2" onclick="moveCarousel3(-1)">&#10094;</button>
+                <button class="next2" onclick="moveCarousel3(1)">&#10095;</button>
+            </div>
+        </section>
+    </div>
+
+    <div class="nav-container">
+        <a href="home.html"><button type="button" class="backward animate-on-scroll">← Previous Page</button></a>
+        <a href="course.html"><button type="button" class="forward animate-on-scroll">Next Page →</button></a>
+    </div>
+
+    <footer class="animate-on-scroll">
+        <div class="waves">
+            <div class="wave" id="wave1"></div>
+            <div class="wave" id="wave2"></div>
+            <div class="wave" id="wave3"></div>
+            <div class="wave" id="wave4"></div>
+        </div>
+        <ul class="social_icons">
+            <li><a href="https://www.youtube.com/@ThatGuyEditzz562" target="_blank"><ion-icon name="logo-youtube"></ion-icon></a></li>
+            <li><a href="https://www.instagram.com/scalemedia_official/" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a></li>
+            <li><a href="https://www.linkedin.com/in/muhammad-hadi-110186310/" target="_blank"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+            <li><a href="" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a></li>
+        </ul>
+
+        <ul class="menu">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="Portfolio1.html">Portfolio</a></li>
+            <li><a href="course.html">Courses</a></li>
+            <li><a href="about us.html">About us</a></li>
+        </ul>
+        <p>©2024 Muhammad Hadi's Portfolio Website | All Rights Reserved</p>
+    </footer>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="hometest.js"></script>
+
+    <script>
+
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '_' || e.key === '0')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        document.addEventListener('wheel', function(e) {
+            if (e.ctrlKey) {
+                e.preventDefault();
+                return false;
+            }
+        }, { passive: false });
+
+        document.addEventListener('touchmove', function(e) {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const wojakItems = document.querySelectorAll('.video-item');
+            let currentPosition = 0;
+
+            function updateWojakCarousel() {
+                const isMobile = window.innerWidth <= 768;
+                const visibleCount = isMobile ? 1 : 2;
+
+                wojakItems.forEach(item => {
+                    item.style.display = 'none';
+                });
+
+                for (let i = 0; i < visibleCount; i++) {
+                    const index = currentPosition + i;
+                    if (index < wojakItems.length) {
+                        wojakItems[index].style.display = 'block';
+                    }
+                }
+            }
+
+            window.moveCarousel = function(direction) {
+                const isMobile = window.innerWidth <= 768;
+                const visibleCount = isMobile ? 1 : 2;
+                const totalItems = wojakItems.length;
+
+                const newPosition = currentPosition + direction;
+                if (newPosition >= 0 && newPosition <= totalItems - visibleCount) {
+                    currentPosition = newPosition;
+                    updateWojakCarousel();
+                }
+            };
+
+            updateWojakCarousel();
+
+            document.querySelectorAll('.video-item2, .video-item3').forEach(item => {
+                item.style.transition = 'transform 0.4s ease';
+            });
+
+            const carouselContainer2 = document.querySelector('.carousel-container2');
+            const carousel2 = document.querySelector('.carousel2');
+            const items2 = Array.from(document.querySelectorAll('.video-item2'));
+            let currentIndex2 = 0;
+
+            function setupCarousel2() {
+                const isMobile = window.innerWidth <= 768;
+
+                items2.forEach(item => {
+                    item.style.transform = '';
+                });
+
+                if (isMobile) {
+
+                    carousel2.style.display = 'block';
+                    items2.forEach((item, index) => {
+                        item.style.display = index === 0 ? 'block' : 'none';
+                    });
+                } else {
+
+                    carousel2.style.display = 'flex';
+                    items2.forEach(item => {
+                        item.style.display = 'block';
+                    });
+                    carousel2.style.transform = 'translateX(0)';
+                }
+            }
+
+            window.moveCarousel2 = function(direction) {
+                const isMobile = window.innerWidth <= 768;
+
+                if (isMobile) {
+
+                    const nextIndex = currentIndex2 + direction;
+
+                    if (nextIndex >= 0 && nextIndex < items2.length) {
+
+                        items2[currentIndex2].style.display = 'none';
+
+                        items2[nextIndex].style.display = 'block';
+
+                        currentIndex2 = nextIndex;
+                    }
+                } else {
+
+                    const visibleItems = 3;
+                    const maxIndex = items2.length - visibleItems;
+                    const nextIndex = Math.max(0, Math.min(currentIndex2 + direction, maxIndex));
+
+                    if (nextIndex !== currentIndex2) {
+                        currentIndex2 = nextIndex;
+                        carousel2.style.transform = `translateX(-${currentIndex2 * 33.33}%)`;
+                    }
+                }
+            };
+
+            const carouselContainer3 = document.querySelector('.carousel-container3');
+            const carousel3 = document.querySelector('.carousel3');
+            const items3 = Array.from(document.querySelectorAll('.video-item3'));
+            let currentIndex3 = 0;
+
+            function setupCarousel3() {
+                const isMobile = window.innerWidth <= 768;
+
+                items3.forEach(item => {
+                    item.style.transform = '';
+                });
+
+                if (isMobile) {
+
+                    carousel3.style.display = 'block';
+                    items3.forEach((item, index) => {
+                        item.style.display = index === 0 ? 'block' : 'none';
+                    });
+                } else {
+
+                    carousel3.style.display = 'flex';
+                    items3.forEach(item => {
+                        item.style.display = 'block';
+                    });
+                    carousel3.style.transform = 'translateX(0)';
+                }
+            }
+
+            window.moveCarousel3 = function(direction) {
+                const isMobile = window.innerWidth <= 768;
+
+                if (isMobile) {
+
+                    const nextIndex = currentIndex3 + direction;
+
+                    if (nextIndex >= 0 && nextIndex < items3.length) {
+
+                        items3[currentIndex3].style.display = 'none';
+
+                        items3[nextIndex].style.display = 'block';
+
+                        currentIndex3 = nextIndex;
+                    }
+                } else {
+
+                    const visibleItems = 2;
+                    const maxIndex = items3.length - visibleItems;
+                    const nextIndex = Math.max(0, Math.min(currentIndex3 + direction, maxIndex));
+
+                    if (nextIndex !== currentIndex3) {
+                        currentIndex3 = nextIndex;
+                        carousel3.style.transform = `translateX(-${currentIndex3 * 50}%)`;
+                    }
+                }
+            };
+
+            setupCarousel2();
+            setupCarousel3();
+
+            window.addEventListener('resize', function() {
+                const wasDesktop = window.innerWidth > 768;
+                const isMobile = window.innerWidth <= 768;
+
+                if (wasDesktop !== !isMobile) {
+                    currentIndex2 = 0;
+                    currentIndex3 = 0;
+                }
+
+                updateWojakCarousel();
+                setupCarousel2();
+                setupCarousel3();
+            });
+        });
+    </script>
+</body>
+</html>

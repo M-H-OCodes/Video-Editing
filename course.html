@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Selection</title>
+    <link rel="stylesheet" href="Css/style.css">
+    <link rel="stylesheet" href="Css/style3.css">
+
+    <style>
+
+        html, body {
+            width: 99%;
+            height: 100%;
+            margin: 0 auto;
+            padding: 0;
+            overflow: hidden;
+            background: radial-gradient(ellipse at bottom, rgb(51, 0, 51), black 100%);
+        }
+
+        header {
+            width: 100%;
+            padding-top: 10px;
+            display: flex;
+            justify-content: flex-end; 
+        }
+
+        nav {
+            margin: 10px 30px 10px auto; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .wraper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 99%;
+            height: 100vh;
+            margin: 0 auto;
+            margin-top: 170px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        #title {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            padding: 0;
+            margin: 0 auto;
+        }
+
+        .course-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: auto;
+            gap: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #course, #course1, #course2 {
+            width: 75%;
+            max-width: 650px;
+            min-height: 80px;
+            background: rgb(0, 0, 0);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            margin: 15px 0;
+            box-shadow: 10px 10px 20px rgba(128, 0, 128, 0.5);
+        }
+
+        #course {
+            opacity: 0.9;
+            box-shadow: 12px 12px 25px rgb(130, 1, 130);
+        }
+
+        #course1 {
+            opacity: 0.6;
+            cursor: default;
+        }
+
+        #course2 {
+            opacity: 0.4;
+            cursor: default;
+        }
+
+        #course:hover {
+            transform: scale(1.1);
+            box-shadow: 15px 15px 30px rgb(130, 1, 130);
+            opacity: 1;
+            z-index: 10;
+        }
+
+        #span, #spann, #spannn {
+            font-size: 26px;
+            padding: 15px 25px;
+            width: 100%;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        #span:hover {
+            transform: translateY(-3px);
+            color: rgb(200, 200, 200);
+            text-decoration: underline 2px purple;
+        }
+
+        .forward{
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(15deg, black,purple);
+            border-radius: 40px;
+            width: 190px;
+            font-size: 20px;
+            height: 50px;
+            color: purple;
+            z-index: 100;
+        }
+
+        .forward:hover{
+            transform: translateY(-3px);
+            transition: 0.5s ease;
+            color: rgb(158, 4, 158);
+            text-decoration: underline;
+            font-weight: 500;
+            box-shadow: 11px 1px 20px rgb(234, 3, 234);
+        }
+
+        .backward{
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(15deg, black,purple);
+            border-radius: 40px;
+            width: 190px;
+            font-size: 20px;
+            height: 50px;
+            color: purple;
+            z-index: 100;
+        }
+
+        .backward:hover{
+            transform: translateY(-3px);
+            transition: 0.5s ease;
+            color: rgb(158, 4, 158);
+            text-decoration: underline;
+            font-weight: 500;
+            box-shadow: 11px 1px 20px rgb(234, 3, 234);
+        }
+
+        @media (max-width: 992px) {
+            #span, #spann, #spannn {
+                font-size: 24px;
+                padding: 15px 20px;
+            }
+
+            header{
+                position: relative;
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+            }
+
+            nav{
+                margin: 10px 30px 10px auto; 
+                width: 450px;
+                height: 55px;
+                font-size: 19px;
+            }
+
+            nav a{
+                padding: 20px;
+            }
+
+            nav span{
+                width: 90px;
+                height: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .forward, .backward {
+                width: 150px;
+                font-size: 16px;
+                height: 45px;
+            }
+
+            header{
+                position: relative;
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+            }
+
+            nav{
+                margin: 10px 20px 10px auto;
+                width: 90%;
+                max-width: 400px;
+            }
+
+            #course, #course1, #course2 {
+                width: 85%;
+                min-height: 70px;
+            }
+
+            #span, #spann, #spannn {
+                font-size: 22px;
+                padding: 12px 15px;
+            }
+
+            #course {
+                opacity: 0.9;
+            }
+
+            #course1 {
+                opacity: 0.6;
+                transform: none;
+            }
+
+            #course2 {
+                opacity: 0.4;
+                transform: none;
+            }
+
+            #course:hover {
+                transform: scale(1.05);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .forward, .backward {
+                width: 120px;
+                font-size: 14px;
+                height: 40px;
+            }
+
+            header{
+                position: relative;
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+            }
+
+            nav{
+                margin: 10px 15px 10px auto;
+                width: 95%;
+                max-width: 320px;
+            }
+
+            #course, #course1, #course2 {
+                width: 90%;
+                min-height: 60px;
+            }
+
+            #span, #spann, #spannn {
+                font-size: 20px;
+                padding: 10px;
+            }
+
+            .course-container {
+                gap: 30px;
+            }
+
+            #course {
+                opacity: 0.9;
+            }
+
+            #course1 {
+                opacity: 0.6;
+                transform: none;
+            }
+
+            #course2 {
+                opacity: 0.4;
+                transform: none;
+            }
+
+            #course:hover {
+                transform: scale(1.03);
+            }
+        }
+
+        #stars-left, #stars2-left, #stars3-left,
+        #stars-center, #stars2-center, #stars3-center {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+        }
+
+        #stars-left {
+            width: 1px;
+            height: 1px;
+            background: transparent;
+            animation: animStar 50s linear infinite;
+            box-shadow: 
+                100px 331px #fff, 124px 442px #fff, 103px 586px #fff,
+                212px 276px #fff, 151px 625px #fff, 221px 931px #fff, 87px 871px #fff,
+                36px 546px #fff, 132px 934px #fff, 198px 901px #fff, 118px 664px #fff,
+                148px 1157px #fff, 84px 232px #fff, 147px 776px #fff, 122px 243px #fff,
+                129px 835px #fff, 79px 969px #fff, 131px 960px #fff, 86px 384px #fff,
+                164px 527px #fff, 78px 646px #fff, 150px 1126px #fff, 65px 1357px #fff,
+                190px 1357px #fff, 240px 1321px #fff, 180px 584px #fff, 110px 877px #fff,
+                355px 1357px #fff, 43px 1254px #fff, 55px 1825px #fff, 56px 347px #fff,
+                80px 894px #fff, 64px 1562px #fff, 255px 1912px #fff, 300px 1651px #fff;
+        }
+
+        #stars2-left {
+            width: 2px;
+            height: 2px;
+            background: transparent;
+            animation: animStar 100s linear infinite;
+            box-shadow: 
+                48px 320px #fff, 175px 663px #fff, 32px 364px #fff,
+                78px 340px #fff, 169px 832px #fff, 122px 684px #fff, 46px 907px #fff,
+                121px 979px #fff, 44px 1069px #fff, 163px 381px #fff, 23px 112px #fff,
+                223px 1179px #fff, 79px 654px #fff, 198px 694px #fff, 185px 464px #fff,
+                199px 869px #fff, 101px 882px #fff, 79px 231px #fff, 52px 932px #fff;
+        }
+
+        #stars3-left {
+            width: 3px;
+            height: 3px;
+            background: transparent;
+            animation: animStar 150s linear infinite;
+            box-shadow: 
+                187px 878px #fff, 160px 564px #fff, 187px 999px #fff,
+                48px 828px #fff, 177px 1001px #fff, 84px 963px #fff, 156px 284px #fff,
+                268px 635px #fff, 120px 598px #fff, 42px 900px #fff, 96px 57px #fff,
+                221px 620px #fff, 76px 858px #fff, 258px 613px #fff, 171px 363px #fff;
+        }
+
+        #stars-center {
+            width: 1px;
+            height: 1px;
+            background: transparent;
+            animation: animStar 60s linear infinite;
+            box-shadow: 
+                350px 131px #fff, 424px 242px #fff, 403px 386px #fff,
+                512px 176px #fff, 451px 325px #fff, 421px 531px #fff, 387px 471px #fff,
+                436px 246px #fff, 432px 534px #fff, 398px 601px #fff, 418px 364px #fff,
+                448px 757px #fff, 384px 532px #fff, 447px 476px #fff, 322px 643px #fff,
+                429px 435px #fff, 379px 569px #fff, 431px 660px #fff, 386px 784px #fff,
+                364px 727px #fff, 378px 846px #fff, 450px 626px #fff, 465px 557px #fff;
+        }
+
+        #stars2-center {
+            width: 2px;
+            height: 2px;
+            background: transparent;
+            animation: animStar 110s linear infinite;
+            box-shadow: 
+                348px 520px #fff, 375px 363px #fff, 432px 264px #fff,
+                378px 540px #fff, 369px 432px #fff, 422px 384px #fff, 446px 507px #fff,
+                421px 379px #fff, 344px 669px #fff, 363px 581px #fff, 423px 412px #fff,
+                423px 679px #fff, 379px 354px #fff, 498px 394px #fff, 385px 664px #fff;
+        }
+
+        #stars3-center {
+            width: 3px;
+            height: 3px;
+            background: transparent;
+            animation: animStar 160s linear infinite;
+            box-shadow: 
+                387px 478px #fff, 360px 564px #fff, 387px 699px #fff,
+                348px 528px #fff, 377px 601px #fff, 384px 363px #fff, 356px 584px #fff,
+                468px 435px #fff, 420px 398px #fff, 442px 500px #fff, 396px 457px #fff;
+        }
+
+        @keyframes animStar {
+            from {
+                transform: translateY(0px);
+            }
+            to {
+                transform: translateY(-2000px);
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="home.html">Home</a></li>
+            <a href="Portfolio1.html">Portfolio</a></li>
+            <a href="course.html">Courses</a></li>
+            <a href="about us.html">About us</a></li>
+             <span></span>
+     </nav>
+    </header>
+
+    <section class="wraper">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+        <div id="stars-left"></div>
+        <div id="stars2-left"></div>
+        <div id="stars3-left"></div>
+        <div id="stars-center"></div>
+        <div id="stars2-center"></div>
+        <div id="stars3-center"></div>
+        <div id="title">
+
+            <div class="course-container">
+                <div id="course">
+                    <a href="innercourse.html"><span id="span">Beginner's Course</span></a>
+                </div>
+                <div id="course1">
+                    <span id="spann">Intermediate Course</span>
+                </div>
+                <div id="course2">
+                    <span id="spannn">Expert Course</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="about us.html"><button type="button" class="forward">Next Page →</button></a>
+    <a href="Portfolio1.html"><button type="button" class="backward">← Previous Page</button></a>
+
+    <script>
+
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '_' || e.key === '0')) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) {
+        e.preventDefault();
+        return false;
+      }
+    }, { passive: false });
+
+    document.addEventListener('touchmove', function(e) {
+      if (e.touches.length > 1) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    window.addEventListener('resize', function() {
+      if (document.body.clientWidth !== window.innerWidth) {
+
+        document.body.style.zoom = 1;
+      }
+    });
+  </script>
+</body>
+</html>

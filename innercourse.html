@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Video Course</title>
+    <link rel="stylesheet" href="Css/styles2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="./1.png" type="image/x-icon">
+    <style>
+
+        .header-section {
+            margin-bottom: 15px !important;
+            padding-bottom: 0 !important;
+            position: relative !important;
+        }
+        .being3 {
+            margin-bottom: 25px !important;
+        }
+        .container {
+            margin-top: 100px !important;
+            align-items: center !important;
+        }
+
+        .being2 {
+            padding-right: 15% !important; 
+            max-width: 85% !important;
+            line-height: 1.2 !important;
+            word-spacing: -1px !important;
+            letter-spacing: -0.5px !important;
+        }
+
+        .home{
+          width: 15% !important;
+          position: absolute !important;
+          right: 5% !important;
+          top: 20px !important;
+        }
+
+        .line {
+            display: block !important;
+            margin: 60px auto 40px !important;
+            width: 90% !important;
+        }
+
+        .content-section {
+            display: block !important;
+            width: 90% !important;
+            margin: 30px auto !important;
+            padding: 0 50px !important;
+        }
+
+        .comments-container {
+            display: block !important;
+            position: static !important;
+            width: 70% !important;
+            margin: 60px auto 30px !important;
+            left: auto !important;
+            top: auto !important;
+            background-color: rgba(156, 39, 176, 0.08); 
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(106, 27, 154, 0.15);
+        }
+
+        .welcome-message {
+            color: rgb(200, 100, 200);
+            font-size: 18px;
+            margin: 10px 0;
+            font-weight: bold;
+            display: none;
+        }
+
+        @media (min-width: 755px) and (max-width: 980px) {
+            .video-player {
+                background: transparent !important;
+                align-self: center !important;
+            }
+            .container {
+                gap: 10px !important;
+                align-items: center !important;
+            }
+            .playlist {
+                max-height: none !important;
+                height: auto !important;
+                align-self: center !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .being2 {
+                padding-right: 20% !important;
+                line-height: 1.2 !important;
+                word-spacing: -1px !important;
+            }
+            .home {
+                width: 18% !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .being2 {
+                padding-right:20% !important;
+                max-width: 70% !important;
+                line-height: 1.2 !important;
+                word-spacing: -1px !important;
+            }
+            .home {
+                width: 20% !important;
+                right: 3% !important;
+            }
+            .comments-container {
+                width: 85% !important;
+            }
+            .content-section {
+                padding: 0 30px !important;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .comments-container {
+                width: 95% !important;
+                margin: 40px auto 20px !important;
+            }
+
+            .interactive-comments {
+                padding: 15px !important;
+            }
+
+            #login-username {
+                width: 100% !important;
+                margin-bottom: 10px !important;
+                font-size: 14px !important;
+                padding: 8px 15px !important;
+            }
+
+            #login-btn, #logout-btn {
+                width: 100% !important;
+                padding: 8px 15px !important;
+                font-size: 14px !important;
+            }
+
+            .welcome-message {
+                font-size: 16px !important;
+            }
+
+            .cmnt-input {
+                min-height: 80px !important;
+                padding: 10px !important;
+                font-size: 14px !important;
+            }
+
+            .bu-primary {
+                width: 100% !important;
+                padding: 10px !important;
+                font-size: 14px !important;
+            }
+
+            .content-section {
+                width: 95% !important;
+                padding: 0 15px !important;
+            }
+        }
+
+        .popup {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            border-radius: 4px;
+            color: white;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 9999;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+        }
+
+        .popup.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .popup.success {
+            background-color: #6a1b9a;
+        }
+
+        .popup.error {
+            background-color: #F44336;
+        }
+
+        .popup.info {
+            background-color: #9c27b0;
+        }
+
+        @media (max-width: 576px) {
+            .popup {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                padding: 10px 15px;
+                text-align: center;
+                max-width: none;
+            }
+        }
+
+        .comment {
+            display: block;
+            background-color: rgba(159, 32, 157, 0.749);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 6px rgba(106, 27, 154, 0.15);
+        }
+
+        .c-main {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .c-votes, .score-plus, .score-minus, .score-number {
+            display: none;
+        }
+
+        .c-header {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: rgb(252, 62, 255);
+            padding: 10px;
+            border-radius: 6px;
+            justify-content: space-between;
+        }
+
+        .c-header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .usr-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: none; 
+        }
+
+        .usr-name {
+            font-weight: bold;
+            color: #6a1b9a;
+        }
+
+        .this-usr {
+            background-color: #9c27b0;
+            color: rgb(255, 255, 255);
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 3px;
+            display: none;
+        }
+
+        .comment.this-user .this-usr {
+            display: block;
+        }
+
+        .cmnt-at {
+            color: #8e24aa;
+            font-size: 0.95em;
+            font-weight: 600;
+            background-color: rgba(191, 64, 191, 0.2);
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .cmnt-at:empty {
+            display: none;
+        }
+
+        .c-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-left: auto;
+        }
+
+        .comment .c-header, 
+        .comment.reply .c-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .comment .usr-name,
+        .comment.reply .usr-name {
+            flex: 0 0 auto;
+            margin-right: 10px;
+        }
+
+        .comment .this-usr,
+        .comment.reply .this-usr {
+            flex: 0 0 auto;
+            margin-right: 10px;
+        }
+
+        .comment .cmnt-at,
+        .comment.reply .cmnt-at {
+            flex: 1 1 auto;
+            text-align: right;
+            margin-right: 15px;
+        }
+
+        .comment .c-actions,
+        .comment.reply .c-actions {
+            flex: 0 0 auto;
+            margin-left: 0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        @media (max-width: 576px) {
+            .comment .c-header,
+            .comment.reply .c-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .comment .c-header-left,
+            .comment.reply .c-header-left {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .comment .c-actions,
+            .comment.reply .c-actions {
+                width: 100%;
+                justify-content: flex-end;
+                margin-top: 5px;
+            }
+        }
+
+        .reply, .delete, .edit {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s ease;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .reply {
+            color: #ffffff;
+            background-color: rgba(191, 64, 191, 0.4);
+            border: 1px solid rgba(191, 64, 191, 0.6);
+        }
+
+        .reply:hover {
+            background-color: rgba(191, 64, 191, 0.7);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(191, 64, 191, 0.3);
+        }
+
+        .delete {
+            color: #ffffff;
+            background-color: rgba(219, 76, 146, 0.4);
+            border: 1px solid rgba(219, 76, 146, 0.6);
+        }
+
+        .delete:hover {
+            background-color: rgba(219, 76, 146, 0.7);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(219, 76, 146, 0.3);
+        }
+
+        .edit {
+            color: #ffffff;
+            background-color: rgba(191, 64, 191, 0.4);
+            border: 1px solid rgba(191, 64, 191, 0.6);
+        }
+
+        .edit:hover {
+            background-color: rgba(191, 64, 191, 0.7);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(191, 64, 191, 0.3);
+        }
+
+        .c-body {
+            color: #ffffff;
+            line-height: 1.5;
+            background-color: rgba(156, 39, 176, 0.03);
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .replies {
+            display: flex;
+            flex-direction: column;
+            margin-left: 40px;
+            padding-left: 20px;
+            border-left: 2px solid rgba(156, 39, 176, 0.3);
+            margin-top: 5px;
+            margin-bottom: 20px;
+            width: calc(100% - 60px); 
+        }
+
+        .comment.reply {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .comment.reply .c-main {
+            width: 100%;
+        }
+
+        .comment.reply .c-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .comment.reply .c-body {
+            width: 100%;
+        }
+
+        .reply-input {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 15px;
+            background-color: rgba(156, 39, 176, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(106, 27, 154, 0.1);
+        }
+
+        .reply-input .cmnt-input {
+            width: 100%;
+            min-height: 100px;
+        }
+
+        .c-header > * {
+            margin: 0;
+        }
+
+        .c-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .comment {
+            width: 100%;
+        }
+
+        .c-main {
+            width: 100%;
+        }
+
+        .cmnt-input {
+            width: 100%;
+            min-height: 100px;
+            border: 1px solid rgba(156, 39, 176, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            color: #1d0140;
+            resize: none;
+            background-color: rgba(227, 86, 252, 0.9);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .cmnt-input:focus {
+            outline: none;
+            border-color: #9c27b0;
+            box-shadow: 0 0 0 2px rgba(156, 39, 176, 0.2);
+        }
+
+        .bu-primary {
+            background-color: #9c27b0;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 25px;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            align-self: flex-start;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .bu-primary:hover {
+            background-color: #6a1b9a;
+            transform: translateY(-1px);
+        }
+
+        .bu-primary:active {
+            transform: translateY(0);
+        }
+
+        .hide-replies-btn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+            margin-bottom: 15px;
+            font-weight: bold;
+            display: none;
+            padding: 10px 18px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            background-color: rgba(252, 62, 255, 0.3);
+            border: 1px solid rgba(252, 62, 255, 0.6);
+            font-size: 1.05em;
+            letter-spacing: 0.5px;
+        }
+
+        .hide-replies-btn:hover {
+            background-color: rgba(252, 62, 255, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(156, 39, 176, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animating {
+            animation: fadeIn 0.5s ease forwards;
+            max-height: 1000px;
+            opacity: 1;
+            transition: max-height 0.5s ease, opacity 0.5s ease;
+        }
+
+        #login-btn, #logout-btn {
+            background-color: #6a1b9a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #login-btn:hover, #logout-btn:hover {
+            background-color: #9c27b0;
+        }
+
+        #login-username {
+            border: 1px solid #ce93d8;
+            border-radius: 4px;
+            padding: 8px 15px;
+            color: #4a148c;
+        }
+
+        .edit-input {
+            width: 100%;
+            min-height: 80px;
+            margin-bottom: 10px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(156, 39, 176, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            color: #4a148c;
+            resize: none;
+        }
+
+        .edit-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .bu-secondary {
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 25px;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(233, 30, 99, 0.3);
+        }
+
+        .bu-secondary:hover {
+            background-color: #d81b60;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(233, 30, 99, 0.4);
+        }
+
+        .bu-secondary:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(233, 30, 99, 0.2);
+        }
+
+        .c-actions .edit,
+        .c-actions .delete {
+            display: none !important;
+        }
+
+        .comment.this-user .c-actions .edit,
+        .comment.this-user .c-actions .delete,
+        .comment.reply.this-user .c-actions .edit,
+        .comment.reply.this-user .c-actions .delete {
+            display: flex !important;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+
+        .comment.this-user .c-actions .edit:hover,
+        .comment.reply.this-user .c-actions .edit:hover {
+            background-color: rgba(191, 64, 191, 0.7);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(191, 64, 191, 0.3);
+        }
+
+        .comment.this-user .c-actions .delete:hover,
+        .comment.reply.this-user .c-actions .delete:hover {
+            background-color: rgba(219, 76, 146, 0.7);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(219, 76, 146, 0.3);
+        }
+
+        .loading-spinner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(3px);
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(156, 39, 176, 0.1);
+            border-left-color: #9c27b0;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-text {
+            color: white;
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .bu-primary.loading, .bu-secondary.loading {
+            position: relative;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .bu-primary.loading::after, .bu-secondary.loading::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: calc(50% - 8px);
+            right: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-left-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-section" style="margin-bottom: 15px; padding-bottom: 0; position: relative;">
+        <a href="course.html"><h1 class="Beign">Muhammad Hadi -- Course Section</h1></a>
+        <h2 class="being2" style="padding-right: 15%;">Creativity Overflow: Beginner's guide to bringing imagination into reality</h2>
+        <h3 class="being3" style="margin-bottom: 25px;">2:00min | 1 video | Beginner</h3>
+        <a href="home.html"><img src="e 3.png" alt="Home" class="home" style="width: 15%; position: absolute; right: 5%; top: 20px;"></a>
+    </div>
+
+    <div class="container" style="margin-top: 100px;">
+        <div class="video-player">
+            <video id="main-video" controls>
+                <source src="Course/course 1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="playlist">
+            <h2>Course Playlist</h2>
+            <ul id="video-list">
+                <li data-video="Course/course 1.mp4" class="active">
+                    <i class="fas fa-tv icon"></i>
+                    Lesson 1: Introduction
+                </li>
+
+                <li data-video="Course/course video 1.mp4">
+                    <i class="fas fa-tv icon"></i>
+                    Lesson 2: Editing Basics
+                </li>
+
+                <li data-video="Course/Course vid 3.mp4">
+                    <i class="fas fa-tv icon"></i>
+                    Lesson 3: Rought Cuts and Final Cut
+                </li>
+
+                <li data-video="Course/Course 4.mp4">
+                    <i class="fas fa-tv icon"></i>
+                    Lesson 4: Use of Transitions and Effects
+                </li>
+
+                <li data-video="Course/Course vid 5.mp4">
+                    <i class="fas fa-tv icon"></i>
+                    Lesson 5: Use of Colour Correction and Filters
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="content-section">
+        <h1 class="define">About this course:</h1>
+        <p class="definep">Video editing is not just about merging a few clips together, the real essence
+            of editing lies in the creative process of planning, recording and combining. How good a video would
+            turn out to be is not only dependent on the years of expertise that an editor may have but rather his
+            creative thought process, the way he would imagine his video is the way the video would turn out to be.
+            This course, while it does not teaches you imagination, would present a few ways and techniques that can 
+            make your editing process more efficient and increase the overall quality of your video.
+        </p>
+    </div>
+
+    <div class="content-section">
+        <h1 class="learn">What you will learn:</h1>
+        <div class="learn-item">
+            <img src="e (2).png" alt="" class="icon2">
+            <h3 class="tech">Editing techniques and tips for beginners</h3>
+        </div>
+    </div>
+
+    <div class="comments-container">
+        <div class="loading-spinner" style="display: none;">
+            <div class="spinner"></div>
+            <div class="loading-text">Loading...</div>
+        </div>
+
+        <div class="interactive-comments">
+            <div id="login-section">
+                <input id="login-username" type="text" placeholder="Enter your username" />
+                <button id="login-btn">Log In</button>
+                <button id="logout-btn" style="display: none;">Log Out</button>
+                <div id="welcome-message" class="welcome-message"></div>
+                <button id="show-comment-btn" class="bu-primary" style="display: none; margin-top: 15px;">Write a Comment</button>
+            </div>
+
+            <div id="comment-section" style="display: none;">
+                <div class="reply-input main-input">
+                    <textarea class="cmnt-input" placeholder="Add a comment..."></textarea>
+                    <button class="bu-primary">SEND</button>
+                </div>
+
+                <div class="comments-wrp">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoPlayer = document.getElementById('main-video');
+            const videoList = document.getElementById('video-list');
+            const listItems = videoList.getElementsByTagName('li');
+
+            for (let i = 0; i < listItems.length; i++) {
+                listItems[i].addEventListener('click', function() {
+                    const videoSrc = this.getAttribute('data-video');
+                    if (videoSrc && !videoSrc.includes('Soon to come')) {
+
+                        for (let j = 0; j < listItems.length; j++) {
+                            listItems[j].classList.remove('active');
+                        }
+
+                        this.classList.add('active');
+
+                        videoPlayer.src = videoSrc;
+                        videoPlayer.load();
+                        videoPlayer.play();
+                    }
+                });
+            }
+
+            const loginBtn = document.getElementById('login-btn');
+            const logoutBtn = document.getElementById('logout-btn');
+            const loginSection = document.getElementById('login-section');
+            const commentSection = document.getElementById('comment-section');
+            const usernameInput = document.getElementById('login-username');
+            const welcomeMessage = document.getElementById('welcome-message');
+
+            function updateWelcomeMessage(username) {
+                if (username) {
+                    welcomeMessage.textContent = `Welcome, ${username}!`;
+                    welcomeMessage.style.display = 'block';
+                } else {
+                    welcomeMessage.style.display = 'none';
+                }
+            }
+
+            const username = localStorage.getItem('username');
+            if (username) {
+                loginBtn.style.display = 'none';
+                logoutBtn.style.display = 'inline-block';
+
+                usernameInput.value = username;
+                usernameInput.disabled = true;
+                updateWelcomeMessage(username);
+
+            }
+
+            loginBtn.addEventListener('click', function() {
+                const username = usernameInput.value.trim();
+                if (username) {
+                    localStorage.setItem('username', username);
+                    loginBtn.style.display = 'none';
+                    logoutBtn.style.display = 'inline-block';
+
+                    usernameInput.disabled = true;
+                    updateWelcomeMessage(username);
+
+                }
+            });
+
+            const showCommentBtn = document.getElementById('show-comment-btn');
+            if (showCommentBtn) {
+                showCommentBtn.addEventListener('click', function() {
+
+                    commentSection.style.display = 'block';
+
+                    document.querySelector('.comments-wrp').style.display = 'none';
+
+                    this.style.display = 'none';
+                });
+            }
+
+            logoutBtn.addEventListener('click', function() {
+                localStorage.removeItem('username');
+                loginBtn.style.display = 'inline-block';
+                logoutBtn.style.display = 'none';
+                commentSection.style.display = 'none';
+                usernameInput.value = '';
+                usernameInput.disabled = false;
+                updateWelcomeMessage(null);
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '_' || e.key === '0')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        document.addEventListener('wheel', function(e) {
+            if (e.ctrlKey) {
+                e.preventDefault();
+                return false;
+            }
+        }, { passive: false });
+
+        document.addEventListener('touchmove', function(e) {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        window.addEventListener('resize', function() {
+            if (document.body.clientWidth !== window.innerWidth) {
+                document.body.style.zoom = 1;
+            }
+        });
+    </script>  
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics-compat.js"></script>
+
+    <!-- Initialize Firebase -->
+    <script>
+
+        const firebaseConfig = {
+
+            apiKey: "AIzaSyBcv1yokBdN99rXsNxXYjw2Bbaxq7M9M8",
+            authDomain: "portfolio-website-b584f.firebaseapp.com",
+            projectId: "portfolio-website-b584f",
+            storageBucket: "portfolio-website-b584f.firebasestorage.app", 
+            messagingSenderId: "302157928295",
+            appId: "1:302157928295:web:6ed26922907b5a15a01c2",
+            measurementId: "G-SW7SRNV6CM"
+        };
+
+        try {
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+
+            window.db = firebase.firestore();
+
+            window.db.collection("comments").get()
+                .then(() => console.log("Firebase connection successful"))
+                .catch(error => {
+                    console.error("Firebase connection error:", error);
+                    alert("Error connecting to the comment system. Please check your internet connection.");
+                });
+
+            document.dispatchEvent(new Event('firebaseLoaded'));
+        } catch (error) {
+            console.error("Firebase initialization error:", error);
+            alert("Error initializing the comment system. Please refresh the page or try again later.");
+        }
+    </script>
+
+    <!-- Comment template (hidden) -->
+    <template class="comment-template">
+        <div class="comment">
+            <div class="c-main">
+                <div class="c-header">
+                    <div class="c-header-left">
+                        <div class="usr-name"></div>
+                        <div class="this-usr">you</div>
+                        <div class="cmnt-at"></div>
+                    </div>
+                    <div class="c-actions">
+                        <button class="reply"><i class="fas fa-reply"></i> Reply</button>
+                        <button class="edit"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="delete"><i class="fas fa-trash"></i> Delete</button>
+                    </div>
+                </div>
+                <div class="c-body"></div>
+                <div class="replies">
+                    <!-- Replies will be inserted here -->
+                </div>
+                <button class="hide-replies-btn">Show Replies</button>
+            </div>
+        </div>
+    </template>
+
+    <script src="app.js"></script>
+
+    <!-- Date Modifier Script -->
+    <script>
+
+        function updateCommentDates() {
+
+            if (!window.firebase || !window.firebase.firestore) {
+                alert("Firebase is not initialized. Please refresh the page and try again.");
+                return;
+            }
+
+            const db = firebase.firestore();
+
+            const loadingDiv = document.createElement('div');
+            loadingDiv.textContent = "Updating comment dates...";
+            loadingDiv.style.position = 'fixed';
+            loadingDiv.style.top = '20px';
+            loadingDiv.style.left = '50%';
+            loadingDiv.style.transform = 'translateX(-50%)';
+            loadingDiv.style.backgroundColor = 'rgba(156, 39, 176, 0.8)';
+            loadingDiv.style.color = 'white';
+            loadingDiv.style.padding = '10px 20px';
+            loadingDiv.style.borderRadius = '5px';
+            loadingDiv.style.zIndex = '10000';
+            document.body.appendChild(loadingDiv);
+
+            db.collection("comments").get().then(async (snapshot) => {
+                const total = snapshot.size;
+                let processed = 0;
+
+                const updatePromises = [];
+
+                snapshot.forEach((doc) => {
+
+                    const startDate = new Date(2023, 9, 1); 
+                    const endDate = new Date(2023, 10, 30); 
+
+                    const randomDate = new Date(
+                        startDate.getTime() + Math.random() * (endDate.getTime() - startDate.getTime())
+                    );
+
+                    const newTimestamp = firebase.firestore.Timestamp.fromDate(randomDate);
+
+                    const updatePromise = db.collection("comments").doc(doc.id).update({
+                        date: newTimestamp
+                    }).then(() => {
+                        processed++;
+                        loadingDiv.textContent = `Updating comment dates... (${processed}/${total})`;
+                    });
+
+                    updatePromises.push(updatePromise);
+
+                    const commentData = doc.data();
+                    if (commentData.replies && commentData.replies.length > 0) {
+                        const updatedReplies = commentData.replies.map(reply => {
+
+                            const replyStartDate = randomDate;
+                            const replyEndDate = new Date(2023, 10, 30);
+
+                            const randomReplyDate = new Date(
+                                replyStartDate.getTime() + Math.random() * (replyEndDate.getTime() - replyStartDate.getTime())
+                            );
+
+                            return {
+                                ...reply,
+                                date: {
+                                    seconds: Math.floor(randomReplyDate.getTime() / 1000),
+                                    nanoseconds: 0
+                                }
+                            };
+                        });
+
+                        const updateRepliesPromise = db.collection("comments").doc(doc.id).update({
+                            replies: updatedReplies
+                        });
+
+                        updatePromises.push(updateRepliesPromise);
+                    }
+                });
+
+                await Promise.all(updatePromises);
+
+                loadingDiv.textContent = "All comment dates updated successfully!";
+                loadingDiv.style.backgroundColor = 'rgba(76, 175, 80, 0.8)';
+
+                setTimeout(() => {
+                    document.body.removeChild(loadingDiv);
+                    alert("Comment dates have been updated to be between October and November. Please refresh the page to see the changes.");
+                    location.reload();
+                }, 3000);
+            }).catch((error) => {
+                console.error("Error updating comment dates:", error);
+                loadingDiv.textContent = "Error updating comment dates. Check console for details.";
+                loadingDiv.style.backgroundColor = 'rgba(244, 67, 54, 0.8)';
+
+                setTimeout(() => {
+                    document.body.removeChild(loadingDiv);
+                }, 3000);
+            });
+        }
+
+        const dateButton = document.createElement('button');
+        dateButton.id = 'update-dates-btn';
+        dateButton.textContent = 'Update Comment Dates';
+        dateButton.style.display = 'none';
+        dateButton.style.position = 'fixed';
+        dateButton.style.bottom = '20px';
+        dateButton.style.right = '20px';
+        dateButton.style.zIndex = '10000';
+        dateButton.style.padding = '10px 15px';
+        dateButton.style.backgroundColor = '#9c27b0';
+        dateButton.style.color = 'white';
+        dateButton.style.border = 'none';
+        dateButton.style.borderRadius = '5px';
+        dateButton.style.cursor = 'pointer';
+        dateButton.addEventListener('click', updateCommentDates);
+        document.body.appendChild(dateButton);
+
+        console.log('%c How to update comment dates:', 'font-weight: bold; font-size: 14px; color: #9c27b0;');
+        console.log('%c 1. To show the update button: document.getElementById("update-dates-btn").style.display = "block"', 'color: #0277bd;');
+        console.log('%c 2. To run directly: updateCommentDates()', 'color: #0277bd;');
+        console.log('%c Note: This will change existing comment dates only. New comments will use the actual upload date.', 'color: #e91e63;');
+    </script>
+</body>
+</html>

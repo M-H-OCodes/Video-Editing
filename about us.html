@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>About Us</title>
+    <link rel="stylesheet" href="Css/style3.css">
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" type="module"></script>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" nomodule defer></script>
+
+    <style>
+        body {
+            background-color: rgb(24, 0, 24);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+            padding: 10px 0;
+        }
+
+        .content-section {
+            background-color: rgb(82, 0, 82);
+            border-radius: 3px;
+            color: white;
+            margin: 1rem 0.5rem;
+            padding: 1rem;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease 0.1s, transform 0.8s ease 0.1s;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-from-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease 0.1s;
+        }
+
+        .animate-from-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease 0.1s;
+        }
+
+        .animate-from-bottom {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease 0.1s;
+        }
+
+        .animate-from-top {
+            opacity: 0;
+            transform: translateY(-50px);
+            transition: all 0.8s ease 0.1s;
+        }
+
+        .animate-scale {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s ease 0.1s;
+        }
+
+        .animate-from-left.visible,
+        .animate-from-right.visible,
+        .animate-from-bottom.visible,
+        .animate-from-top.visible,
+        .animate-scale.visible {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+
+        .quote-text.animate-on-scroll, 
+        .quote-author.animate-on-scroll {
+            transform: scale(0.8) translateY(30px);
+            transition: opacity 1s ease 0.1s, transform 1s ease 0.1s;
+        }
+
+        .quote-text.animate-on-scroll.visible, 
+        .quote-author.animate-on-scroll.visible {
+            transform: scale(1) translateY(0);
+        }
+
+        .journey-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0 0.5rem;
+            position: relative;
+        }
+
+        .text-content {
+            width: 100%;
+            max-width: 60%;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            text-align: justify;
+            line-height: 0.8cm;
+            margin-right: 45%;
+            padding-bottom: 30px;
+        }
+
+        .software-images {
+            position: absolute;
+            top: 130px;
+            right: 0;
+            width: 600px;
+            height: 400px;
+            padding: 0;
+            z-index: 10;
+            display: block; 
+        }
+
+        .software-images img.editor-img {
+            position: absolute;
+            width: 260px;
+            height: 400px;
+            object-fit: contain;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .software-images img.editor-img:nth-child(1) {
+            right: 380px;
+            transform: rotate(-15deg);
+            z-index: 1;
+        }
+
+        .software-images img.editor-img:nth-child(2) {
+            right: 200px;
+            z-index: 3;
+        }
+
+        .software-images img.editor-img:nth-child(3) {
+            right: 60px;
+            transform: rotate(15deg);
+            z-index: 2;
+        }
+
+        .arrow-container {
+            position: absolute;
+            top: -110px;
+            width: 130px;
+            text-align: center;
+            z-index: 5;
+        }
+
+        .arrow-container.left {
+            right: 520px;
+        }
+
+        .arrow-container.middle {
+            right: 250px;
+        }
+
+        .arrow-container.right {
+            right: 110px;
+        }
+
+        .arrow-label {
+            color: white;
+            font-weight: bold;
+            margin-bottom: -5px;
+            font-size: 1.1rem;
+            transform: rotate(-8deg);
+        }
+
+        .arrow-container.middle .arrow-label {
+            transform: none;
+        }
+
+        .arrow-container.middle .arrow-label.below {
+            margin-top: 210px; 
+            margin-bottom: 0;
+        }
+
+        .arrow-container.right .arrow-label {
+            transform: rotate(8deg);
+        }
+
+        .arrow-img {
+            width: 200px;
+            height: auto;
+            transform: rotate(180deg);
+            filter: brightness(5);
+            position: relative;
+        }
+
+        .arrow-img::after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            bottom: -50px;
+            left: 0;
+            background-color: rgb(82, 0, 82);
+            z-index: 10;
+        }
+
+        .black {
+            background-color: rgb(25, 0, 25);
+            border-radius: 3px;
+            margin: 5px 0;
+            padding: 5px;
+            width: 103%;
+        }
+
+        .pone {
+            padding-top: 30px;
+        }
+
+        .ptwo {
+            background-color: rgb(25, 0, 25);
+            border-radius: 3px;
+            margin: 5px 0;
+            padding: 5px;
+            width: 100%;
+        }
+
+        .quote-section {
+            position: relative;
+            width: 100%;
+            margin: 2rem 0;
+            padding: 5rem 1rem;
+            background-image: url(video-editing-cropped.jpg);
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .quote-text {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 2.5rem;
+            color: black;
+            max-width: 75%;
+            text-align: center;
+            text-shadow: 0 0 10px purple, 0 0 20px purple, 0 0 30px purple, 0 0 40px purple;
+            word-spacing: 5px;
+            z-index: 1;
+        }
+
+        .quote-author {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 2rem;
+            color: black;
+            text-shadow: 0 0 10px purple, 0 0 20px purple, 0 0 30px purple, 0 0 40px purple;
+            z-index: 1;
+            margin-top: 1rem;
+        }
+
+        .dif, .est, .creative {
+            color: rgb(171, 2, 171);
+            text-shadow: 0 0 10px black, 0 0 20px black, 0 0 30px black;
+        }
+
+        .suggested-content {
+            background-color: rgb(34, 0, 34);
+            border-radius: 3px;
+            color: white;
+            padding: 1rem;
+            margin: 1rem 0.5rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .suggested-content h3{
+            margin-left: 1rem;
+            padding-top: 1rem;
+        }
+
+        .content-card {
+            position: relative;
+            width: 95%;
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+            background-color: rgb(45, 0, 45);
+            margin: 1rem auto;
+            padding: 1rem;
+        }
+
+        .inner-card {
+            position: relative;
+            width: 95%;
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .level-card-beginner {
+            background-color: rgb(72, 1, 72);
+            padding-bottom: 0.5rem;
+            border-radius: 0.5rem;
+        }
+
+        .level-card-intermediate {
+            background-color: rgb(96, 1, 96);
+            padding-bottom: 0.5rem;
+            padding-left: 0.5rem;
+            padding-top: 0.5rem;
+            border-radius: 0.5rem;
+        }
+
+        .channel-card {
+            background-color: rgb(125, 1, 125);
+            width: 95%;
+            margin: 2rem auto;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 1499px) {
+            .software-images {
+                display: none;
+            }
+
+            .text-content {
+                max-width: 90%;
+                margin-right: 10%;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .quote-text {
+                font-size: 2rem;
+                max-width: 90%;
+            }
+
+            .quote-author {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                justify-content: center;
+            }
+
+            .software-images img {
+                width: 25%;
+                max-width: 80px;
+            }
+
+            .quote-text {
+                font-size: 1.5rem;
+            }
+
+            .quote-author {
+                font-size: 1.2rem;
+            }
+
+            .content-card, .inner-card, .channel-card {
+                width: 90%;
+                padding: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .black, .ptwo {
+                font-size: 16px;
+                line-height: 1.4;
+            }
+
+            .quote-section {
+                padding: 3rem 0.5rem;
+                background-attachment: scroll;
+            }
+
+            .quote-text {
+                font-size: 1.2rem;
+                max-width: 95%;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            h3, h4 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a id="home-link" href="home.html">Home</a>
+            <a id="portfolio-link" href="Portfolio1.html">Portfolio</a>
+            <a id="about-link" href="course.html">Courses</a>
+            <a id="contact-link" href="about us.html">About us</a>
+            <span></span>
+        </nav>
+    </header>
+
+    <div class="content-section">
+        <h1 class="animate-on-scroll">My Journey:</h1>
+        <div class="journey-container">
+            <div class="text-content">
+                <p class="black animate-on-scroll">As a person who started editing out of love for montages albeit with no experience on how to edit 
+                    whatsoever, like other editors my journey also begin with softwares like Wondershare Filmora and 
+                    Inshot and while my editing for the first two years was quite mediocre, my shift from editing montages
+                    to editing informative videos was the transition that allowed me to explore various editing methods
+                    and ways to improve my editing in every possible aspect, including the use color correction, the use of
+                    SFX's, animation, Graphics, effects, transitions and much more.
+                </p>
+                <p class="black animate-on-scroll">
+                    Currently I stand at a point where I can call myself an expert editor but it doesn't mean that I am
+                    the best, the jourey for becoming a top of the line editor is tough, something that requires endless
+                    dedication and motivation, and while I was unable to put in that much which was required to be a renowned 
+                    editor, it does not mean its impossible, just some efforts can make endless imaginations come true.
+                </p>
+
+                <h1 class="pone">Purpose of this website</h1>
+                <p class="ptwo animate-on-scroll">
+                    The reason why I created this website is to be able to show my work to others while ensuring that
+                    others are able to learn something out of it, the rationale as to why I created a course section on
+                    this website. The main intent behind all of this is to be able to give something away to the users, a
+                    skill that would help the users to experience something new.
+                </p>
+
+                <p class="ptwo animate-on-scroll">
+                    These courses might not be of much value for someone who is already an expert or someone who has
+                    been editing for quitesome time, but for those who are just beginners or even those who are on an
+                    intermetidate level, those users might be able to find something of great insight out of these courses, techniques
+                    and strategies that may be able to help make their editing faster and much more engaging.
+                </p>
+            </div>
+            <div class="software-images">
+                <img src="Images/inshot.jpg" alt="Inshot" class="editor-img">
+                <img src="Images/CapCut.jpeg" alt="CapCut" class="editor-img">
+                <img src="Images/filmora.jpeg" alt="Filmora" class="editor-img">
+
+                <div class="arrow-container left">
+                    <div class="arrow-label">Beginner</div>
+                    <img src="Images/arrow 1.png" alt="" class="arrow-img">
+                </div>
+
+                <div class="arrow-container middle">
+                    <div class="arrow-label">Intermediate</div>
+                    <img src="Images/arrow 2.png" alt="" class="arrow-img">
+                </div>
+
+                <div class="arrow-container right">
+                    <div class="arrow-label">Beginner</div>
+                    <img src="Images/arrow 1.png" alt="" class="arrow-img">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="quote-section">
+        <p class="quote-text animate-on-scroll"><b>"<span class="creative">Creativity</span> involves breaking out of <span class="est">established patterns</span> in order to look at things in a <span class="dif">different way</span>."</b></p>
+        <h2 class="quote-author animate-on-scroll">~Edward de Bono~</h2>
+    </div>
+
+    <div class="suggested-content">
+        <div class="content-card animate-on-scroll">
+            <h1>Suggested Content:</h1>
+            <div class="inner-card animate-on-scroll">
+                <h2>YouTube Channels: (For Editing) </h2>
+                <div class="level-card-beginner animate-on-scroll">
+                    <h3>Beginner:</h3>
+                    <div class="channel-card animate-on-scroll">
+                        <h4>1- Ben Claremont (for CapCut - Beginner) </h4>
+                        <h4>2- Creative Suite Tutorials (for CapCut - Beginner)</h4>    
+                        <h4>3- Tube Sensei (for CapCut - Beginner)</h4>
+                        <h4>4- Shadab Alam (for CapCut - Beginner)</h4>
+                    </div>
+                    <h3>Intermediate:</h3>
+                    <div class="channel-card animate-on-scroll">
+                        <h4>1- Imran Ali Dina (for Adobe - Intermediate)</h4>    
+                        <h4>2- Toms Project (for Adobe - Intermediate)</h4>
+                        <h4>3- HBA Services (for Adobe - Intermediate)</h4>
+                        <h4>4- BRING YOUR OWN LAPTOP (for Adobe - Intermediate)</h4>
+                    </div>
+                </div>
+                <h2>Online Courses:</h2>
+                <div class="level-card-intermediate animate-on-scroll">
+                    <h4> 1- Artlist Academy -- Link: https:
+                    <h4> 2- snscreen.com -- Link: https:
+                    <h4> 3- Coursea.org -- Link: https:
+                    <h4> 4- udemy.com -- Link: https:
+                </div>
+                
+                <h2>Leave a Review</h2>
+                <p>We'd love your feedback! Just fill out this form to share your experience.</p>
+                <div class="level-card-intermediate animate-on-scroll">
+                    <h3><a href="https://docs.google.com/forms/d/e/1FAIpQLSfah6YPCDRjywhyeHxosukOuoNBdjkZUuUkTJVnMDuTszwspg/viewform?usp=header" target="_blank" style="color: white;">Website Development: Portfolio Website Survey</a></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="animate-on-scroll">
+        <div class="waves">
+            <div class="wave" id="wave1"></div>
+            <div class="wave" id="wave2"></div>
+            <div class="wave" id="wave3"></div>
+            <div class="wave" id="wave4"></div>
+        </div>
+        <ul class="social_icons">
+            <li><a href="https://www.youtube.com/@ThatGuyEditzz562" target="_blank"><ion-icon name="logo-youtube"></ion-icon></a></li>
+            <li><a href="https://www.instagram.com/scalemedia_official/" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a></li>
+            <li><a href="https://www.linkedin.com/in/muhammad-hadi-110186310/" target="_blank"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+            <li><a href="" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a></li>
+        </ul>
+
+        <ul class="menu">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="Portfolio1.html">Portfolio</a></li>
+            <li><a href="course.html">Courses</a></li>
+            <li><a href="about us.html">About us</a></li>
+        </ul>
+        <p>©2024 Muhammad Hadi's Portfolio Website | All Rights Reserved</p>
+    </footer>
+
+    <script src="hometest.js"></script>
+    <script>
+
+        document.addEventListener('keydown', function(e) {
+          if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '_' || e.key === '0')) {
+            e.preventDefault();
+            return false;
+          }
+        });
+
+        document.addEventListener('wheel', function(e) {
+          if (e.ctrlKey) {
+            e.preventDefault();
+            return false;
+          }
+        }, { passive: false });
+
+        document.addEventListener('touchmove', function(e) {
+          if (e.touches.length > 1) {
+            e.preventDefault();
+          }
+        }, { passive: false });
+
+        window.addEventListener('resize', function() {
+          if (document.body.clientWidth !== window.innerWidth) {
+
+            document.body.style.zoom = 1;
+          }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            let lastScrollTop = 0;
+
+            function checkScroll() {
+                const st = window.pageYOffset || document.documentElement.scrollTop;
+                const isScrollingDown = st > lastScrollTop;
+
+                animatedElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementBottom = element.getBoundingClientRect().bottom;
+                    const elementHeight = element.offsetHeight;
+                    const windowHeight = window.innerHeight;
+
+                    const scrollDownThreshold = windowHeight * 0.85;
+                    const scrollUpThreshold = windowHeight * 0.15;
+
+                    if ((isScrollingDown && elementTop < scrollDownThreshold && elementTop > -elementHeight) || 
+                        (!isScrollingDown && elementBottom > scrollUpThreshold && elementTop < windowHeight)) {
+                        element.classList.add('visible');
+                    }
+
+                    else if ((elementBottom < 0) || (elementTop > windowHeight)) {
+                        element.classList.remove('visible');
+                    }
+                });
+
+                lastScrollTop = st <= 0 ? 0 : st; 
+            }
+
+            checkScroll();
+
+            window.addEventListener('scroll', checkScroll);
+        });
+      </script>
+</body>
+</html>

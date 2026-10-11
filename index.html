@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Muhammad Hadi's Portfolio</title>
+    <link rel="stylesheet" href="Css/car.css">
+    <link rel="stylesheet" href="Css/style.css">
+    <link rel="stylesheet" href="Css/style3.css">
+
+<style>
+    body{
+        background: linear-gradient(100deg, black, rgb(66, 0, 66));
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+</style>
+</head>
+<body>
+
+    <div class="banner">
+        <div class="slider" style="--quantity: 4">
+            <div class="item" style="--position: 1"><img src="vidimg1.png" alt=""></div>
+            <div class="item" style="--position: 2"><img src="vidimg2.png" alt=""></div>
+            <div class="item" style="--position: 3"><img src="vidimg3.png" alt=""></div>
+            <div class="item" style="--position: 4"><img src="vidimg4.png" alt=""></div>
+        </div>
+        <div class="content">
+            <div class="model"><img src="edit.png" alt=""></div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="intro">
+        <h2>Welcome to</h2>
+    </div>
+
+    <div class="text">
+        <h2>Welcome to</h2>
+        <a href="home.html"> <button type="btn" class="btnn"><h1>Muhammad Hadi's</h1></button> </a>
+        <h2>Portfolio Website</h2>
+    </div>
+
+    <script>
+
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '_' || e.key === '0')) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) {
+        e.preventDefault();
+        return false;
+      }
+    }, { passive: false });
+
+    document.addEventListener('touchmove', function(e) {
+      if (e.touches.length > 1) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    window.addEventListener('resize', function() {
+      if (document.body.clientWidth !== window.innerWidth) {
+
+        document.body.style.zoom = 1;
+      }
+    });
+  </script>
+
+</body>
+</html>
